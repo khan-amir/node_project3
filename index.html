@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #uss div{
+     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+    </style>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <div id='uss'>
+    </div>
+</body>
+<script>
+    
+
+const uss = document.querySelector('#uss');
+
+
+fetch("http://localhost:3000/post")
+.then(result =>  result.json()).
+then(data => {
+  
+  data.forEach(user => {
+    console.log(user.date)
+    const newDiv = document.createElement('div');
+    const newSpan1 = document.createElement('span');
+    const newSpan2 = document.createElement('span');
+    const newSpan3 = document.createElement('span');
+    
+   newSpan1.innerHTML = user.title;
+    newSpan2.innerHTML = user.description;
+    newSpan3.innerHTML = user.date;
+    
+    newDiv.appendChild(newSpan1);
+    newDiv.appendChild(newSpan2);
+    newDiv.appendChild(newSpan3);
+ uss.appendChild(newDiv);
+});
+ 
+})
+</script>
+</html>
